@@ -17,9 +17,9 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # 위의 이미지들을 Docker hub에 push
   - docker push pinkwhale9/tamastudy-client
-  - docker push the2792/tamastudy-nginx
-  - docker push the2792/tamastudy-server
-  - docker push the2792/tamastudy-worker
+  - docker push pinkwhale9/tamastudy-nginx
+  - docker push pinkwhale9/tamastudy-server
+  - docker push pinkwhale9/tamastudy-worker
 # deploy:
 #   edge: true
 #   provider: elasticbeanstalk
