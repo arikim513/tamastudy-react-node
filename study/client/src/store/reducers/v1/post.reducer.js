@@ -1,5 +1,7 @@
+import { GET_POST, GET_POST_BY_ID } from '../../type';
+
 const initialState = {
-  posts: [],
+  posts: [], //[{},{},{}] null아닌 형식을 주는 이유는 map할떄 타입있어야 에러 안 남
   post: {},
   loading: true,
   error: null,
@@ -12,6 +14,6 @@ export default (state = initialState, action) => {
     case 'GET_POST_BY_ID':
       return;
     default:
-      return state;
+      return state; // initialState 가 그대로 반환
   }
 };

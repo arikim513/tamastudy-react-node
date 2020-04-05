@@ -1,5 +1,9 @@
 import React from 'react';
 
+<<<<<<< HEAD
+const SignPresenter = () => {
+  return <div>SignPresenter</div>;
+=======
 const SignPresenter = ({ isSignup, formData, handleChange, handleSubmit }) => {
   return (
     <div>
@@ -32,6 +36,7 @@ const SignPresenter = ({ isSignup, formData, handleChange, handleSubmit }) => {
       </form>
     </div>
   );
+>>>>>>> 10d2119c656ca6e315546ef1488b7c204fa02f56
 };
 
 export default SignPresenter;

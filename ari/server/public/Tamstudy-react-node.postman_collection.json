@@ -1,0 +1,382 @@
+{
+  "info": {
+    "_postman_id": "5dcbb85e-e09c-457f-ad12-54c048a1bc23",
+    "name": "Tamstudy-react-node",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "signup",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "64358d27-beaa-43fa-9818-ffef9175adbb",
+                "exec": ["pm.environment.set(\"TOKEN\", pm.response.json().data)"],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"username\" : \"jongseok\",\n\t\"email\": \"test@gmail.com\",\n\t\"password\": \"1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{V1}}/user/signup",
+              "host": ["{{V1}}"],
+              "path": ["user", "signup"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "signin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "64a1e581-e3e8-47cf-b938-b4df77b93c51",
+                "exec": ["pm.environment.set(\"TOKEN\", pm.response.json().data)"],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"email\": \"test@gmail.com\",\n\t\"password\": \"1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{V1}}/user/signin",
+              "host": ["{{V1}}"],
+              "path": ["user", "signin"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{V1}}/user/users",
+              "host": ["{{V1}}"],
+              "path": ["user", "users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "me",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZTZkODg4MWUwMTJmYWM2MDE3ZTM5MmYiLCJpYXQiOjE1ODQyMzY2NzN9.q_KltQEQ1ydDojxWjjBKHxpV3EsOMzTeO1wyHnXDDs4",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{V1}}/user/me",
+              "host": ["{{V1}}"],
+              "path": ["user", "me"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Post",
+      "item": [
+        {
+          "name": "getPosts",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{V1}}/post",
+              "host": ["{{V1}}"],
+              "path": ["post"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createPost",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"title\" : \" 10 새로운 api 테스트\",\n\t\"description\" : \"this is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is descriptionthis is description\",\n\t\"imgUrl\" : \"https://res.cloudinary.com/valuechampion/image/upload/c_lfill,dpr_1.0,f_auto,h_1600,q_auto,w_1600/v1/lol_skin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{V1}}/post/create",
+              "host": ["{{V1}}"],
+              "path": ["post", "create"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getPostById",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{V1}}/post/5e705160f37a81bff62777b9",
+              "host": ["{{V1}}"],
+              "path": ["post", "5e705160f37a81bff62777b9"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deletePostById",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{V1}}/post/delete/5e705160f37a81bff62777b9",
+              "host": ["{{V1}}"],
+              "path": ["post", "delete", "5e705160f37a81bff62777b9"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateById",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"title\" : \"수정테스트\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{V1}}/post/update/5e6d88d738882fc640c514b0",
+              "host": ["{{V1}}"],
+              "path": ["post", "update", "5e6d88d738882fc640c514b0"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "PostComment",
+      "item": [
+        {
+          "name": "createPostComment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"text\" : \"11번째 코멘트\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{V1}}/post/5e705160f37a81bff62777b9/comment/create",
+              "host": ["{{V1}}"],
+              "path": ["post", "5e705160f37a81bff62777b9", "comment", "create"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getPostComments",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{V1}}/post/5e705160f37a81bff62777b9/comment?limit=20",
+              "host": ["{{V1}}"],
+              "path": ["post", "5e705160f37a81bff62777b9", "comment"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deletePostCommentById",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{V1}}/post/5e704fb10843d6be3ddfff5f/comment/delete/5e704fd50843d6be3ddfff61",
+              "host": ["{{V1}}"],
+              "path": [
+                "post",
+                "5e704fb10843d6be3ddfff5f",
+                "comment",
+                "delete",
+                "5e704fd50843d6be3ddfff61"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updatePostCommentById",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"text\" : \"수정 코멘트\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{V1}}/post/5e704fb10843d6be3ddfff5f/comment/update/5e704fda0843d6be3ddfff62",
+              "host": ["{{V1}}"],
+              "path": [
+                "post",
+                "5e704fb10843d6be3ddfff5f",
+                "comment",
+                "update",
+                "5e704fda0843d6be3ddfff62"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    }
+  ],
+  "protocolProfileBehavior": {}
+}

@@ -1,0 +1,3 @@
+import CreatePostCommentByPostIdContainer from './CreatePostCommentByPostIdContainer';
+
+export default CreatePostCommentByPostIdContainer;

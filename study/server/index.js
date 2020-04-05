@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+require('dotenv').config({ path: '../.env' }); //서버 하나위에 프로젝트 루트의 .env읽도록 수정(.env는 루트에만 두고 서버폴더에서는 삭제!)
+=======
 require('dotenv').config({ path: '../.env' });
+>>>>>>> 10d2119c656ca6e315546ef1488b7c204fa02f56
 // env val
 const keys = require('./keys');
 // library file require
