@@ -21,11 +21,7 @@ const AppHeader = ({ authState, history }: IProps) => {
         src={isLoggedIn ? LoggedInIcon : DefaultUserIcon}
         size={isLoggedIn ? 24 : 22}
       />
-<<<<<<< HEAD
-      <Title>TAMASTUDY</Title>
-=======
       <Title onClick={() => history.push('/')}>TAMASTUDY</Title>
->>>>>>> 10d2119c656ca6e315546ef1488b7c204fa02f56
     </HeaderWrapper>
   );
 };
@@ -53,10 +49,7 @@ const Title = styled.div`
   text-transform: uppercase;
   font-weight: 700;
   line-height: 24px;
-<<<<<<< HEAD
-=======
   cursor: pointer;
->>>>>>> 10d2119c656ca6e315546ef1488b7c204fa02f56
 `;
 
 const mapStateToPRops = (state: IRootState) => ({
