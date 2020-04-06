@@ -1,6 +1,26 @@
 const asyncHandler = require('../../middleware/asyncHandler');
 const Post = require('../../database/models/Post');
 const User = require('../../database//models/User');
+const multer = require('multer');
+
+// STORAGE MULTER CONFIG
+let storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './public/uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}_${file.originalname}`);
+  },
+  fileFilter: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    if (ext !== '.jpg' && ext !== '.png' && ext !== '.mp4') {
+      return cb(res.status(400).end('only jpg, png, mp4 is allowed'), false);
+    }
+    cb(null, true);
+  },
+});
+
+const upload = multer({ storage: storage }).single('file');
 
 // Public
 // GET
@@ -8,7 +28,59 @@ const User = require('../../database//models/User');
 // postman uri ex
 // http://localhost:4000/v1/post
 exports.getPosts = asyncHandler(async (req, res, next) => {
-  res.status(200).json(res.advancedGetResult);
+  const limit = req.query.limit ? parseInt(req.query.limit, 10) : 6;
+
+  let query = {};
+  let findArgs = {};
+
+  if (req.query.title) {
+    findArgs['title'] = { $regex: req.query.title };
+  }
+
+  if (req.query.cursor) {
+    query['_id'] = { $lt: req.query.cursor };
+  }
+
+  let posts = await Post.find({ ...query, ...findArgs })
+    .sort({ _id: -1, createdAt: -1 })
+    .limit(limit + 1); // limit만큼만 데이터를 가져옴
+
+  const hasNextPage = posts.length > limit;
+
+  posts = hasNextPage ? posts.slice(0, -1) : posts;
+
+  console.log(posts.length);
+
+  res.status(200).json({
+    success: true,
+    error: null,
+    total: posts.length,
+    pageInfo: {
+      nextPageCursor: hasNextPage ? posts[posts.length - 1]._id : null,
+      hasNextPage,
+    },
+    result: posts,
+  });
+  // res.status(200).json(res.advancedGetResult);
+});
+
+// fieldname: 'file',
+// originalname: 'React.png',
+// encoding: '7bit',
+// mimetype: 'image/png',
+// destination: 'uploads/',
+// filename: '1573656172282_React.png',
+// path: 'uploads/1573656172282_React.png',
+// size: 24031
+// Upload file
+exports.uploadFiles = asyncHandler(async (req, res, next) => {
+  upload(req, res, (err) => {
+    if (err) {
+      console.log(err);
+      return res.json({ success: false, err });
+    }
+    return res.json({ success: true, url: res.req.file.path, fileName: res.req.file.filename });
+  });
 });
 
 // Private
@@ -34,7 +106,7 @@ exports.createPost = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     error: null,
-    data: post,
+    result: post,
   });
 });
 

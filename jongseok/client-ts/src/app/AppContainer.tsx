@@ -6,6 +6,8 @@ import GlobalStyle from '../styles/global';
 import { connect } from 'react-redux';
 import { IRootState } from '../store/reducers/index';
 import { loadUserFn } from '../store/actions/v1/auth.action';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {
   authState: IRootState['authState'];
@@ -21,6 +23,7 @@ const AppContainer = ({ authState, loadUserFn }: Props) => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <AppPresenter />
+      <ToastContainer position={'bottom-center'} />
     </ThemeProvider>
   );
 };

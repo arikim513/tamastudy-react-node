@@ -5,6 +5,8 @@ import Home from '../components/pages/Home';
 import Sign from '../components/pages/Sign';
 import nonmemberComponent from '../hoc/nonmemberComponent';
 import CommonLayout from '../components/CommonLayout/index';
+import PostForm from '../components/pages/Post/PostForm';
+import GetPostById from '../components/pages/Post/GetPostById';
 
 interface IProps {}
 
@@ -16,6 +18,8 @@ const AppPresenter: React.SFC<IProps> = (props) => {
         <Route path={'/signin'} exact component={nonmemberComponent(Sign)} />
         <Route path={'/signup'} exact component={nonmemberComponent(Sign)} />
         <Route path={'/posts'} exact component={GetPosts} />
+        <Route path={'/post/create'} exact component={PostForm} />
+        <Route path={'/post/:postId'} component={GetPostById} />
         <Route path={'/studies'} exact component={() => <CommonLayout>studies</CommonLayout>} />
         <Route path={'/contact'} exact component={() => <CommonLayout>contact</CommonLayout>} />
         <Redirect from={'*'} to={'/'} />

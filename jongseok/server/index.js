@@ -5,6 +5,7 @@ const keys = require('./keys');
 const path = require('path');
 const express = require('express');
 const colors = require('colors');
+const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
@@ -26,7 +27,8 @@ const app = express();
 app.use(helmet());
 app.use(xss());
 app.use(cors({ origin: 'http://localhost:3000' }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(mongoSanitize());
 // windowsMs (시간)마다 max개의 리퀘스트를 받을 수 있도록 제한

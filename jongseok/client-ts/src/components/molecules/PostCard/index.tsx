@@ -15,31 +15,31 @@ interface Props extends RouteComponentProps<any> {
 const PostCard = ({ history, post }: Props) => {
   return (
     <Card onClick={() => history.push(`/post/${post._id}`)}>
-      <Card__image img={post.imgUrl} />
-      <Card__text>
-        <Card__date>{moment(post.createdAt).startOf('second').fromNow()}</Card__date>
-        <Card__title>{post.title}</Card__title>
-      </Card__text>
-      <Card__stats>
-        <Card__stat>
-          <Card__value>
+      <CardImage img={post.imgUrl} />
+      <CardText>
+        <CardDate>{moment(post.createdAt).startOf('second').fromNow()}</CardDate>
+        <CardTitle>{post.title}</CardTitle>
+      </CardText>
+      <CardStats>
+        <CardStat>
+          <CardValue>
             4<sup>m</sup>
-          </Card__value>
-          <Card__type>LIKE</Card__type>
-        </Card__stat>
-        <Card__stat>
-          <Card__value>{post.view}</Card__value>
-          <Card__type>VIEW</Card__type>
-        </Card__stat>
-        <Card__stat>
-          <Card__value>{post.postComments.length}</Card__value>
-          <Card__type>COMMENTS</Card__type>
-        </Card__stat>
-      </Card__stats>
-      <Card__hover className={'postCard__hover'}>
+          </CardValue>
+          <CardType>LIKE</CardType>
+        </CardStat>
+        <CardStat>
+          <CardValue>{post.view}</CardValue>
+          <CardType>VIEW</CardType>
+        </CardStat>
+        <CardStat>
+          <CardValue>{post.postComments.length}</CardValue>
+          <CardType>COMMENTS</CardType>
+        </CardStat>
+      </CardStats>
+      <CardHover className={'postCard__hover'}>
         <Icon src={OpenIcon} size={40} />
-        <Card__hover_text>바로가기</Card__hover_text>
-      </Card__hover>
+        <CardHoverText>바로가기</CardHoverText>
+      </CardHover>
     </Card>
   );
 };
@@ -76,7 +76,7 @@ const Card = styled.div`
   `}
 `;
 
-const Card__hover = styled.div`
+const CardHover = styled.div`
   opacity: 0;
   visibility: hidden;
   background-color: white;
@@ -96,11 +96,11 @@ const Card__hover = styled.div`
   transition: all 0.2s ease-in-out;
 `;
 
-const Card__hover_text = styled.p`
+const CardHoverText = styled.p`
   margin-top: 8px;
 `;
 
-const Card__image = styled.div<{ img: string }>`
+const CardImage = styled.div<{ img: string }>`
   background-image: url(${(props) => props.img});
   background-position: center;
   background-repeat: no-repeat;
@@ -111,7 +111,7 @@ const Card__image = styled.div<{ img: string }>`
   `}
 `;
 
-const Card__text = styled.div`
+const CardText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -128,7 +128,7 @@ const Card__text = styled.div`
   `}
 `;
 
-const Card__date = styled.span`
+const CardDate = styled.span`
   font-size: 10px;
   color: white;
 
@@ -137,7 +137,7 @@ const Card__date = styled.span`
   `}
 `;
 
-const Card__title = styled.p`
+const CardTitle = styled.p`
   margin-top: 4px;
   font-size: 16px;
   color: white;
@@ -148,7 +148,7 @@ const Card__title = styled.p`
   `}
 `;
 
-const Card__stats = styled.div`
+const CardStats = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
@@ -165,7 +165,7 @@ const Card__stats = styled.div`
   `}
 `;
 
-const Card__stat = styled.div`
+const CardStat = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,7 +174,7 @@ const Card__stat = styled.div`
   color: white;
 `;
 
-const Card__value = styled.div`
+const CardValue = styled.div`
   font-size: 10px;
   font-weight: 500;
   &:sup {
@@ -182,7 +182,7 @@ const Card__value = styled.div`
   }
 `;
 
-const Card__type = styled.div`
+const CardType = styled.div`
   font-size: 6px;
   font-weight: 300;
   text-transform: uppercase;
