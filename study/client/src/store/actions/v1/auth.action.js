@@ -1,5 +1,6 @@
 import { LOAD_USER, SIGN_UP, SIGN_IN, AUTH_ERROR } from '../../type';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 //미들웨어 통과하면서 thunk!! 디스패치 보내줌!
 // export const signinFn = () => async (dispatch) => {

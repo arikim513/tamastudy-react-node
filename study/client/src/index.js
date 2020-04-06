@@ -12,10 +12,8 @@ ReactDOM.render(
 );
 
 //context!!이 태그로 감싸지는 모든 자식들에서 공유하고 싶은 값 여기 설정
-{
-  /* <ContextProvider value={a:1}>
+/* <ContextProvider value={a:1}>
     <App/>
     <Post/>
 </ContextProvider> */
-}
 //->이걸 리덕스버전으로 한거!!

@@ -9,9 +9,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'GET_POSTS':
+    case GET_POST:
       return;
-    case 'GET_POST_BY_ID':
+    case GET_POST_BY_ID:
       return;
     default:
       return state; // initialState 가 그대로 반환
