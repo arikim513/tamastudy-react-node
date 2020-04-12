@@ -1,19 +1,40 @@
-import { GET_POST, GET_POST_BY_ID } from '../../type';
+import { GET_POSTS, CREATE_POST, POST_ERROR } from '../../type';
 
 const initialState = {
-  posts: [], //[{},{},{}] null아닌 형식을 주는 이유는 map할떄 타입있어야 에러 안 남
+  posts: [],
   post: {},
   loading: true,
   error: null,
+  total: 0,
+  pageInfo: {
+    nextPageCursor: '',
+    hasNextPage: false,
+  },
 };
 
-export default (state = initialState, action) => {
+export default (prevState = initialState, action) => {
   switch (action.type) {
-    case GET_POST:
-      return;
-    case GET_POST_BY_ID:
-      return;
+    case GET_POSTS:
+      return {
+        ...prevState,
+        posts: action.payload.result,
+        total: action.payload.total,
+        pageInfo: action.payload.pageInfo,
+        loading: false,
+      };
+    case CREATE_POST:
+      return {
+        ...prevState,
+        post: action.payload,
+        loading: false,
+      };
+    case POST_ERROR:
+      return {
+        ...prevState,
+        error: action.payload,
+        loading: false,
+      };
     default:
-      return state; // initialState 가 그대로 반환
+      return prevState;
   }
 };

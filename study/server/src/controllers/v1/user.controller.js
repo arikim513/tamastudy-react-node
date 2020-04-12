@@ -32,7 +32,7 @@ exports.signin = asyncHandler(async (req, res, next) => {
     return res.status(400).json({
       success: false,
       error: `${req.body.email}는 존재하지 않는 이메일입니다. `,
-      result: null,
+      data: null,
     });
   }
   const isCorrectPassword = await existingUser.matchPassword(req.body.password);
@@ -40,7 +40,7 @@ exports.signin = asyncHandler(async (req, res, next) => {
     return res.status(401).json({
       success: false,
       error: `패스워드가 일치하지 않습니다. `,
-      result: null,
+      data: null,
     });
   }
 
@@ -82,7 +82,7 @@ exports.me = asyncHandler(async (req, res, next) => {
     return res.status(401).json({
       success: false,
       error: '잘못된 경로입니다.',
-      result: null,
+      data: null,
     });
   }
   res.status(200).json({
